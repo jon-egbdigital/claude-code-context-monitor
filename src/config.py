@@ -25,7 +25,7 @@ class Config:
 
     # Window settings
     WINDOW_WIDTH = 280
-    WINDOW_HEIGHT = 140
+    WINDOW_HEIGHT = 160  # Increased to accommodate project name label
     ALWAYS_ON_TOP = True
 
     # Color thresholds and values

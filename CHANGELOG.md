@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 1.1.0 - Project Identifier (2026-01-22)
+
+### New Features
+- ✅ **Project name display**: Shows which Claude Code project/session is being monitored
+- ✅ **Session identifier label**: Displays project folder name with 📁 icon
+- ✅ **Multi-session clarity**: Helps users understand which session they're tracking when running multiple Claude Code instances
+- ✅ **Automatic project name extraction**: Decodes Claude Code's encoded project paths
+
+### Improvements
+- Increased window height from 140px to 160px to accommodate project label
+- Updated "No active session" state to show on project label
+- Better clarity when values "jump" between different sessions
+
+### Technical Details
+- Added `extract_project_name()` function in `data_reader.py`
+- Project paths are decoded from `E--path--to--project` format to `project_name`
+- UI automatically updates project label when switching between active sessions
+
 ## Version 1.0.0 - Initial Release (2026-01-22)
 
 ### Core Features Implemented

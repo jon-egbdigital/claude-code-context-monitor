@@ -5,6 +5,7 @@ A minimal, always-on-top floating desktop widget that displays Claude Code token
 ## Features
 
 - **Real-time monitoring**: Displays current token usage from active Claude Code sessions
+- **Session identifier**: Shows which project is being monitored (prevents confusion with multiple sessions)
 - **Color-coded display**: Visual feedback with green/amber/orange/red based on usage percentage
 - **Progress bar**: Graphical representation of context consumption
 - **Max5 Plan optimized**: Configured for 88,000 token limit (easily configurable for other plans)
@@ -19,6 +20,7 @@ A minimal, always-on-top floating desktop widget that displays Claude Code token
 ```
 ┌─────────────────────────────────────┐
 │  Claude Code Tokens                │
+│  📁 12_CC_ContextMonitor           │  ← Project identifier
 │                                     │
 │           85.2%                     │  ← Color-coded percentage
 │       ███████████░░░░              │  ← Progress bar
@@ -149,6 +151,20 @@ Edit `~/.claude/settings.json` and add the `SessionStart` hook:
 5. **Dragging**: Click and drag anywhere on the window to reposition
 6. **Persistence**: Window position is saved and restored on next launch
 
+### Multiple Sessions
+
+When running multiple Claude Code sessions simultaneously:
+
+- **Automatic Switching**: The monitor tracks the **most recently active** session
+- **Project Identifier**: The project name (📁) shows which session is currently being monitored
+- **Why Values Jump**: If you switch between sessions, the display will update to show the active session's tokens
+- **Manual Compress**: When clicking "Compress Context", paste the command into whichever Claude Code terminal you want to compress
+
+**Example**: If you have sessions for "ProjectA" and "ProjectB":
+1. Send a message in ProjectA → monitor shows "📁 ProjectA" with its token count
+2. Send a message in ProjectB → monitor switches to show "📁 ProjectB" with its token count
+3. This helps you track which session you're monitoring at any given time
+
 ### Configuration
 
 Edit `src/config.py` to customize settings:
@@ -164,7 +180,7 @@ REFRESH_INTERVAL_MS = 2000  # 2 seconds (default)
 
 # Adjust window size
 WINDOW_WIDTH = 280
-WINDOW_HEIGHT = 140
+WINDOW_HEIGHT = 160
 
 # Customize colors
 COLOR_SAFE = "#28A745"      # Green

@@ -4,11 +4,11 @@ from tkinter import ttk
 from pathlib import Path
 try:
     from .config import Config
-    from .data_reader import get_current_usage
+    from .data_reader import get_current_usage, extract_project_name
     from .token_calculator import TokenCalculator
 except ImportError:
     from config import Config
-    from data_reader import get_current_usage
+    from data_reader import get_current_usage, extract_project_name
     from token_calculator import TokenCalculator
 
 
@@ -54,6 +54,16 @@ class OdometerWidget:
             fg=Config.TEXT_SECONDARY,
         )
         self.title_label.pack(pady=(5, 0))
+
+        # Project name label
+        self.project_label = tk.Label(
+            self.root,
+            text="No active session",
+            font=("Arial", 8),
+            bg=Config.BG_COLOR,
+            fg=Config.TEXT_SECONDARY,
+        )
+        self.project_label.pack(pady=(0, 5))
 
         # Large percentage display
         self.percentage_label = tk.Label(
@@ -157,6 +167,10 @@ class OdometerWidget:
             self._show_no_session()
             return
 
+        # Extract and display project name
+        project_name = extract_project_name(session_path)
+        self.project_label.config(text=f"📁 {project_name}")
+
         # Get usage data
         usage_data = self.calculator.get_usage_data(total_tokens)
 
@@ -198,6 +212,8 @@ class OdometerWidget:
 
     def _show_no_session(self):
         """Show 'No active session' state"""
+        self.project_label.config(text="No active session")
+
         self.percentage_label.config(
             text="--",
             fg=Config.COLOR_INACTIVE
@@ -207,7 +223,7 @@ class OdometerWidget:
         self.progress_canvas.coords(self.progress_fg, 0, 0, 0, 20)
 
         self.token_label.config(
-            text="No active session",
+            text="Waiting for Claude Code...",
             fg=Config.TEXT_SECONDARY
         )
 

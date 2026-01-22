@@ -1,11 +1,41 @@
 """Data reader for Claude Code JSONL log files"""
 import json
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 try:
     from .config import Config
 except ImportError:
     from config import Config
+
+
+def extract_project_name(session_path: Path) -> str:
+    """
+    Extract readable project name from session file path.
+
+    Claude Code stores sessions in: ~/.claude/projects/<encoded-path>/<session-id>.jsonl
+    Where <encoded-path> uses '--' as separator (e.g., 'E--projects--myapp')
+
+    Args:
+        session_path: Path to the session JSONL file
+
+    Returns:
+        Readable project name (last component of decoded path)
+    """
+    try:
+        # Get the parent directory name (encoded project path)
+        encoded_path = session_path.parent.name
+
+        # Decode: replace '--' with path separator and get last component
+        # E--10-CLAUDE-CODE--12-CC-ContextMonitor -> E:\10_CLAUDE_CODE\12_CC_ContextMonitor
+        decoded_path = encoded_path.replace('--', '\\')
+
+        # Return just the last folder name for brevity
+        # E:\10_CLAUDE_CODE\12_CC_ContextMonitor -> 12_CC_ContextMonitor
+        project_name = Path(decoded_path).name
+
+        return project_name if project_name else "Unknown Project"
+    except (AttributeError, IndexError):
+        return "Unknown Project"
 
 
 def find_active_session() -> Optional[Path]:
