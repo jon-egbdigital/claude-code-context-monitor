@@ -40,7 +40,8 @@ A minimal, always-on-top floating desktop widget that displays Claude Code token
 
 1. Clone or download this repository:
    ```bash
-   cd E:\10_CLAUDE_CODE\12_CC_ContextMonitor
+   git clone https://github.com/jon-egbdigital/claude-code-context-monitor.git
+   cd claude-code-context-monitor
    ```
 
 2. No additional dependencies needed - all libraries are built-in with Python!
@@ -87,13 +88,13 @@ if "%ERRORLEVEL%"=="0" (
 )
 
 REM Launch monitor in background (no console window)
-cd /d E:\10_CLAUDE_CODE\12_CC_ContextMonitor
+cd /d C:\path\to\claude-code-context-monitor
 start "" pythonw src\main.py
 
 exit /b 0
 ```
 
-**Important**: Replace `E:\10_CLAUDE_CODE\12_CC_ContextMonitor` with your actual installation path.
+**Important**: Replace `C:\path\to\claude-code-context-monitor` with your actual installation path.
 
 **Step 2: Configure Claude Code Hooks**
 
@@ -175,7 +176,7 @@ COLOR_CRITICAL = "#DC3545"  # Red
 ## Project Structure
 
 ```
-E:\10_CLAUDE_CODE\12_CC_ContextMonitor\
+claude-code-context-monitor/
 ├── src/
 │   ├── __init__.py           # Package initialization
 │   ├── main.py               # Entry point and main loop
@@ -230,15 +231,33 @@ E:\10_CLAUDE_CODE\12_CC_ContextMonitor\
 
 ## Future Enhancements
 
-Potential features for future versions:
-- Auto-compress at configurable threshold
-- Desktop notifications for approaching limits
-- Compact mode (minimized view)
-- Trend indicators (usage increasing/decreasing)
-- Time-to-limit estimates
-- Multi-session tracking
-- Cost tracking based on Anthropic pricing
-- System tray mode
+### Planned Features
+
+**High Priority:**
+- **Auto-Compress**: Automatically trigger `/compress` when usage exceeds configurable threshold
+- **Desktop Notifications**: Toast notifications when approaching token limits
+- **Compact Mode**: Minimized view that takes less screen space
+- **System Tray Integration**: Minimize to system tray instead of taskbar
+
+**Medium Priority:**
+- **Multi-Session Tracking**: Monitor multiple Claude Code sessions simultaneously
+- **Cost Tracking**: Track estimated costs based on Anthropic API pricing
+- **Trend Indicators**: Visual arrows showing usage trend (increasing/decreasing)
+- **Time-to-Limit Estimates**: Predict when you'll hit context limit based on usage rate
+- **Launch Delay Configuration**: Add configurable startup delay to avoid boot congestion
+
+**Low Priority:**
+- **Cross-Platform Support**: macOS and Linux compatibility
+- **Session History**: Track and export historical token usage data
+- **Cost Alerts & Budgets**: Set spending alerts and budget limits
+- **Configurable Themes**: Light mode, custom color schemes
+- **Web Dashboard**: Optional web-based monitoring interface
+- **Conditional Launch**: Only auto-start in specific project directories
+- **Auto-Close on Session End**: Optional Stop hook to close monitor with session
+
+### Contributing Ideas
+
+Have an idea? [Open an issue](https://github.com/jon-egbdigital/claude-code-context-monitor/issues) or submit a PR!
 
 ## License
 

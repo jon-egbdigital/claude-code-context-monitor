@@ -48,7 +48,7 @@ A lightweight, always-on-top desktop widget that monitors Claude Code token usag
 ## Project Structure
 
 ```
-E:\10_CLAUDE_CODE\12_CC_ContextMonitor\
+claude-code-context-monitor/
 │
 ├── src/                          # Source code
 │   ├── __init__.py              # Package initialization
@@ -216,13 +216,14 @@ python tests/test_data_reader.py
 
 ### Quick Start
 ```bash
-# Navigate to project directory
-cd E:\10_CLAUDE_CODE\12_CC_ContextMonitor
+# Clone and navigate to project directory
+git clone https://github.com/jon-egbdigital/claude-code-context-monitor.git
+cd claude-code-context-monitor
 
 # Launch the monitor
 python src\main.py
 
-# Or use the launcher script
+# Or use the launcher script (Windows)
 run.bat
 ```
 

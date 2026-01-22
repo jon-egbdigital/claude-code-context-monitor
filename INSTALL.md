@@ -46,9 +46,10 @@ sudo apt-get install python3-tk
 
 ### 1. Download the Project
 
-Navigate to your project directory:
+Clone the repository:
 ```bash
-cd E:\10_CLAUDE_CODE\12_CC_ContextMonitor
+git clone https://github.com/jon-egbdigital/claude-code-context-monitor.git
+cd claude-code-context-monitor
 ```
 
 ### 2. Verify Files
