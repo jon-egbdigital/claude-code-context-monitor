@@ -1,4 +1,4 @@
-"""Handles /compress command execution for Claude Code"""
+"""Handles /compact command execution for Claude Code"""
 import tkinter as tk
 from tkinter import messagebox
 
@@ -33,13 +33,13 @@ class CompressHandler:
         This is a simpler approach than trying to automate terminal input.
         The user can paste the command into their Claude Code terminal.
         """
-        # Copy /compress to clipboard
-        self.copy_to_clipboard("/compress")
+        # Copy /compact to clipboard
+        self.copy_to_clipboard("/compact")
 
         # Show notification
         messagebox.showinfo(
             "Compress Command Ready",
-            "The command '/compress' has been copied to your clipboard.\n\n"
+            "The command '/compact' has been copied to your clipboard.\n\n"
             "Paste it into your Claude Code terminal to compress the context.",
             parent=self.root
         )
